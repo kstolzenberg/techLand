@@ -1,4 +1,4 @@
-<!--source: http://alignedleft.com/tutorials/d3/chaining-methods-->
+<!--source: http://alignedleft.com/tutorials/d3/drawing-svgs-->
 
 <!DOCTYPE>
 <html>
@@ -13,21 +13,18 @@
 	<script type="text/javascript">
 		// d3.select points to DOM area via css selector
 		// d3 likes chaining! bc methods return selectors
-		// create new "p" element at end & content is text with string contents
-		// binding data! note this executing for the length of the list 
+		// binding data! note this executing for the length of the list at .data()
 		// enter() creates new data bound d3 objects
-		// this prints the data to the dom!
-
-		//http://alignedleft.com/tutorials/d3/drawing-svgs
 		var w = 500;
 		var h = 100;
-		var dataset = [5,10,15,20,25];
+		var dataset = [5,10,15,20,25,30,35];
 
 		var svg =  d3.select("body").append("svg").attr("width", 500).attr("height", 100);
 		var circles = svg.selectAll("circle").data(dataset).enter().append("circle");
 
-		var newColor1 = 25 + function(d){return d};
-		var newColor = "rgb("+50+", "+87+", newColor1 )";
+		//bind data to colors too!
+		var newColor = function(d){return "hsl(240,61%," + (d*2) + "%)"};
+		console.log(newColor);
 
 		circles.attr("cx", function(d,i){
 			return (i * 50) +25;
@@ -36,7 +33,7 @@
 			.attr("r", function(d){
 				return d;
 			})
-			.attr("fill", newColor );
+			.attr("fill", newColor);
 
 	</script>
 </body>
