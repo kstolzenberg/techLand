@@ -1,0 +1,43 @@
+<!--source: http://alignedleft.com/tutorials/d3/chaining-methods-->
+
+<!DOCTYPE>
+<html>
+<head>
+	<title>this is a test</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8">
+	</script>
+</head>
+
+<body>
+
+	<script type="text/javascript">
+		// d3.select points to DOM area via css selector
+		// d3 likes chaining! bc methods return selectors
+		// create new "p" element at end & content is text with string contents
+		// binding data! note this executing for the length of the list 
+		// enter() creates new data bound d3 objects
+		// this prints the data to the dom!
+
+		//http://alignedleft.com/tutorials/d3/drawing-svgs
+		var w = 500;
+		var h = 100;
+		var dataset = [5,10,15,20,25];
+
+		var svg =  d3.select("body").append("svg").attr("width", 500).attr("height", 100);
+		var circles = svg.selectAll("circle").data(dataset).enter().append("circle");
+
+		var newColor1 = 25 + function(d){return d};
+		var newColor = "rgb("+50+", "+87+", newColor1 )";
+
+		circles.attr("cx", function(d,i){
+			return (i * 50) +25;
+			})
+			.attr("cy", h/2)
+			.attr("r", function(d){
+				return d;
+			})
+			.attr("fill", newColor );
+
+	</script>
+</body>
+</html>
